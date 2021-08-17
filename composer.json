@@ -33,7 +33,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BeeDelivery\\LaraiFood\\LaraiFoodServiceProvider"
+                "BeeDelivery\\LaraiFood\\Providers\\LaraiFoodServiceProvider"
             ],
             "aliases": {
                 "LaraiFood": "BeeDelivery\\LaraiFood\\Facades\\LaraiFood"
