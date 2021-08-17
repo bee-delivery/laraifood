@@ -1,6 +1,6 @@
 <?php
 
-namespace BeeDelivery\LaraiFood\Services;
+namespace BeeDelivery\LaraiFood\Providers;
 
 use BeeDelivery\LaraiFood\LaraiFood;
 use Illuminate\Support\ServiceProvider;
@@ -26,7 +26,7 @@ class LaraiFoodServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../../config/laraifood.php', 'laraifood');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/laraifood.php', 'laraifood');
 
         // Register the service the package provides.
         $this->app->singleton('laraifood', function ($app) {

@@ -2,17 +2,24 @@
 
 namespace BeeDelivery\LaraiFood;
 
-use BeeDelivery\LaraiFood\Functions\CustomerKey;
-use BeeDelivery\LaraiFood\Functions\General;
+use BeeDelivery\LaraiFood\Functions\Auth;
+use BeeDelivery\LaraiFood\Functions\Merchant;
+use BeeDelivery\LaraiFood\Functions\Order;
 
-class PicPay
+class LaraiFood
 {
 
-    public function general() {
-        return new General();
+    public function auth() {
+        return new Auth();
     }
 
-    public function customerKey($customer_id) {
-        return new CustomerKey($customer_id);
+    public function merchant($accessToken)
+    {
+        return new Merchant($accessToken);
+    }
+
+    public function orders($accessToken)
+    {
+        return new Order($accessToken);
     }
 }
