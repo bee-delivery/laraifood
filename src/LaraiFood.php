@@ -8,17 +8,16 @@ use BeeDelivery\LaraiFood\Functions\Order;
 
 class LaraiFood
 {
-
-    public function auth() {
+    public static function auth() {
         return new Auth();
     }
 
-    public function merchant($accessToken)
+    public static function merchant($accessToken)
     {
         return new Merchant($accessToken);
     }
 
-    public function orders($accessToken)
+    public static function orders($accessToken)
     {
         return new Order($accessToken);
     }
