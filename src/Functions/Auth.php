@@ -62,12 +62,12 @@ class Auth
         ]);
 
         $formParams = [
-            'grantType' => $data['refreshToken'] ? 'refresh_token' : $this->grant_type,
+            'grantType' => isset($data['refreshToken']) ? 'refresh_token' : $this->grant_type,
             'clientId' => $this->client_id,
             'clientSecret' => $this->client_secret,
-            'authorizationCode' => $data['authorizationCode'],
-            'authorizationCodeVerifier' => $data['authorizationCodeVerifier'],
-            'refreshToken' => $data['refreshToken'] ?? null
+            'authorizationCode' => isset($data['authorizationCode']) ? $data['authorizationCode'] : null,
+            'authorizationCodeVerifier' => isset($data['authorizationCodeVerifier']) ? $data['authorizationCodeVerifier'] : null,
+            'refreshToken' => isset($data['refreshToken']) ? $data['refreshToken'] : null
         ];
 
         try {
