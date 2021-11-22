@@ -17,7 +17,7 @@ class LaraiFood
         return new Merchant($accessToken);
     }
 
-    public static function orders($accessToken)
+    public static function order($accessToken)
     {
         return new Order($accessToken);
     }
