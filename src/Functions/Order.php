@@ -15,18 +15,22 @@ class Order
         $this->base_uri = config('laraifood.base_uri');
     }
 
-    public function eventsPolling()
+    public function eventsPolling($groups = null, $types = null)
     {
         $client = new \GuzzleHttp\Client([
             'base_uri' => $this->base_uri,
         ]);
 
         try {
-            $response = $client->request('POST', "order/v1.0/events:polling", [
+            $response = $client->request('GET', "order/v1.0/events:polling", [
                 'allow_redirects' => false,
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->accessToken,
                 ],
+                'query' => [
+                    'groups' => $groups,
+                    'types' => $types,
+                ]
             ]);
 
             return [
