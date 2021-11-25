@@ -81,4 +81,35 @@ class Order
             ];
         }
     }
+
+    /**
+     * Acknowledge a set of events, dismissing them from future polling calls.
+     *
+     * @param array $events
+     * @return array
+     */
+    public function acknowledge($events)
+    {
+        try {
+            $response = $this->client->request('POST', "order/v1.0/events/acknowledgment", [
+                'allow_redirects' => false,
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->accessToken,
+                    'content-type' => 'application/json'
+                ],
+                'body' => json_encode($events),
+            ]);
+
+            return [
+                'code' => $response->getStatusCode(),
+                'response' => json_decode($response->getBody(), true)
+            ];
+
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
 }
