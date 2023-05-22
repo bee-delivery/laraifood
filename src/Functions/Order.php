@@ -112,4 +112,26 @@ class Order
             ];
         }
     }
+
+    public function dispatch($orderId){
+        try {
+            $response = $this->client->request('POST', "order/v1.0/orders/$orderId/dispatch", [
+                'allow_redirects' => false,
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->accessToken,
+                ]
+            ]);
+
+            return [
+                'code' => $response->getStatusCode(),
+                'response' => json_decode($response->getBody(), true)
+            ];
+
+        } catch (\Exception $e) {
+            return [
+                'code' => $e->getCode(),
+                'response' => $e->getMessage()
+            ];
+        }
+    }
 }
